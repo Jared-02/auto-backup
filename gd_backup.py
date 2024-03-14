@@ -27,7 +27,7 @@ class GoogleDriveBackup(object):
             "get_refresh_token": True
         }
         gauth = GoogleAuth(settings=settings)
-        gauth.CommandLineAuth()
+        gauth.LocalWebserverAuth()
         self.drive = GoogleDrive(gauth)
 
         self.website_path = config.get('Global', 'website_path')
