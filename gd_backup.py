@@ -49,14 +49,12 @@ class GoogleDriveBackup(object):
         log_file = f"{log_dir}/run.log"
 
         formatter = logging.Formatter('%(asctime)s - %(filename)s[%(lineno)s] - %(levelname)s - %(message)s')
-        time_handler = handlers.TimedRotatingFileHandler(filename=log_file, when="midnight", backupCount=30, encoding='utf-8')
-        time_handler.suffix = "%Y%m%d"
-        time_handler.setLevel(logging.DEBUG)
-        time_handler.setFormatter(formatter)
+        handler = handlers.TimedRotatingFileHandler(filename=log_file, when="S", interval=60*30, backupCount=30, encoding='utf-8')
+        handler.setFormatter(formatter)
 
         logger = logging.getLogger('gd_backup')
         logger.setLevel(logging.DEBUG)
-        logger.addHandler(time_handler)
+        logger.addHandler(handler)
 
         return logger
 
